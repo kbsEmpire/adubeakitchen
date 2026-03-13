@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adubea's Kitchen - Premium Ghanaian Restaurant serving Local Dishes, Continental Meals, Drinks & Pastries. Order via WhatsApp.">
+    <meta name="keywords" content="restaurant, Ghana, premium dining, local dishes, continental food, Adubea's Kitchen, Dome Pillar">
+    <meta name="author" content="Adubea's Kitchen">
+    <meta property="og:title" content="Adubea's Kitchen - Luxury Bites, Unforgettable Taste">
+    <meta property="og:description" content="Premium Ghanaian restaurant serving exquisite local and continental cuisine">
+    <meta property="og:type" content="website">
+    
+    <title>Adubea's Kitchen | Premium Restaurant - Ofankor Barrier, Accra</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Adubea's Kitchen</a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <a href="#menu" class="nav-cta">Order Now</a>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#menu" class="mobile-nav-link">Menu</a></li>
+                <li><a href="#how-it-works" class="mobile-nav-link">How It Works</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <a href="#menu" class="mobile-cta">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title reveal">Adubea's Kitchen</h1>
+            <p class="hero-tagline reveal">Luxury Bites, Unforgettable Taste</p>
+            <div class="hero-buttons reveal">
+                <a href="#menu" class="btn btn-outline">View Menu</a>
+                <a href="https://wa.me/233550008800?text=Hello%20Creme%20Munch,%20I%20would%20like%20to%20place%20an%20order" target="_blank" class="btn btn-gold">
+                    <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title reveal">Our Menu</h2>
+            <p class="section-subtitle reveal">Discover our exquisite selection of culinary delights</p>
+            
+            <!-- Category Tabs - Updated Menu -->
+            <div class="menu-tabs reveal">
+                <button class="tab-btn active" data-category="breakfast">🥐 Breakfast</button>
+                <button class="tab-btn" data-category="local">🍚 Local</button>
+                <button class="tab-btn" data-category="continental">🍝 Continental</button>
+                <button class="tab-btn" data-category="waffles">🧇 Waffles</button>
+                <button class="tab-btn" data-category="pizza">🍕 Pizza</button>
+                <button class="tab-btn" data-category="drinks">🥤 Drinks</button>
+                <button class="tab-btn" data-category="pastries">🍰 Pastries</button>
+            </div>
+            
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be dynamically inserted -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Summary Panel -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="order-panel" id="orderPanel">
+        <div class="order-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="closeCart" aria-label="Close cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="order-items" id="orderItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <span>Add items from our menu</span>
+            </div>
+        </div>
+        
+        <div class="order-footer" id="orderFooter" style="display: none;">
+            <div class="order-total">
+                <span>Total</span>
+                <span class="total-price">GHS <span id="totalAmount">0</span></span>
+            </div>
+            
+            <form class="order-form" id="orderForm">
+                <div class="form-group">
+                    <label for="customerName">Your Name *</label>
+                    <input type="text" id="customerName" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerLocation">Location *</label>
+                    <input type="text" id="customerLocation" name="location" placeholder="Enter your delivery location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialInstructions">Special Instructions</label>
+                    <textarea id="specialInstructions" name="notes" placeholder="Any special requests?" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-gold btn-full">
+                    <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <button class="floating-cart" id="floatingCart" aria-label="Open cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <!-- Mobile Sticky Cart Bar -->
+    <div class="mobile-cart-bar" id="mobileCartBar" style="display: none;">
+        <div class="mobile-cart-info">
+            <span class="mobile-cart-badge"><i class="fas fa-shopping-bag"></i> <span id="mobileCartBadge">0</span> items</span>
+            <span class="mobile-cart-total" id="mobileCartTotal">GHS 0</span>
+        </div>
+        <button class="mobile-cart-btn" id="mobileCartBtn">View Cart</button>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233550008800?text=Hello%20Creme%20Munch,%20I%20would%20like%20to%20place%20an%20order" target="_blank" class="floating-whatsapp" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title reveal">How It Works</h2>
+            <p class="section-subtitle reveal">Three simple steps to your perfect meal</p>
+            
+            <div class="steps-container">
+                <div class="step-card reveal">
+                    <div class="step-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Browse Our Menu</h3>
+                    <p>Explore our exquisite selection of local and continental dishes crafted with passion</p>
+                </div>
+                
+                <div class="step-card reveal">
+                    <div class="step-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </div>
+                    <h3>Add to Cart</h3>
+                    <p>Select your favorite items, customize quantities, and build your perfect order</p>
+                </div>
+                
+                <div class="step-card reveal">
+                    <div class="step-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>Order via WhatsApp</h3>
+                    <p>Send your order directly to us for quick processing and delivery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="image-frame">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=800&fit=crop" alt="Elegant dining experience at Adubea's Kitchen">
+                    </div>
+                </div>
+                
+                <div class="about-content reveal">
+                    <h2 class="section-title">Our Story</h2>
+                    <div class="title-underline"></div>
+                    <p>Welcome to <strong>Adubea's Kitchen</strong>, where culinary excellence meets Ghanaian hospitality. Located in the heart of Ofankor Barrier, Accra we take pride in serving dishes that celebrate the rich flavors of our local cuisine while embracing the finest continental traditions.</p>
+                    <p>Every dish we prepare is a testament to our commitment to quality. We source the freshest ingredients from trusted local suppliers, ensuring that each bite delivers an unforgettable experience.</p>
+                    <p>At Adubea's Kitchen, dining is not just about food—it's about creating memories. Whether you're savoring our signature jollof rice, indulging in premium continental fare, or treating yourself to our artisan pastries, expect nothing less than excellence.</p>
+                    <p>Our team of skilled chefs brings passion and precision to every plate, while our warm staff ensures your visit is nothing short of exceptional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title reveal">Our Gallery</h2>
+            <p class="section-subtitle reveal">Experience the elegance of Adubea's Kitchen</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&h=800&fit=crop" alt="Elegant restaurant interior with chandelier">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-camera"></i>
+                            <span>Elegant Interior</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item reveal reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&h=400&fit=crop" alt="Professional chef preparing dish">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-user-chef"></i>
+                            <span>Our Expert Chefs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item reveal reveal-delay-3">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop" alt="Luxurious dining area">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-store"></i>
+                            <span>Luxurious Setting</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop" alt="Happy guests dining">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-users"></i>
+                            <span>Happy Guests</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item reveal reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=800&fit=crop" alt="Beautiful restaurant exterior and entrance">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-building"></i>
+                            <span>Our Entrance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item reveal reveal-delay-3">
+                    <img src="https://images.unsplash.com/photo-1588266661439-2d91596d8193?w=600&h=400&fit=crop" alt="Friendly staff welcoming guests">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Friendly Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Contact Us</h2>
+            <p class="section-subtitle reveal">We'd love to hear from you</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Ofankor Barrier, Accra</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>0550008800</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/233550008800" target="_blank" class="whatsapp-link">Click to chat</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Business Hours</h4>
+                            <p>Mon - Sun: 8:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-map reveal">
+                    <div class="map-frame">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985.1874219015326!2d-0.26533026513578967!3d5.6588027746756815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9f27abe77a61%3A0x686a81303a79ff79!2sAdubea&#39;s%20Kitchen!5e0!3m2!1sen!2sgh!4v1772824845940!5m2!1sen!2sgh" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Adubea's Kitchen</h3>
+                    <p>Luxury Bites, Unforgettable Taste</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/adubea'skitchen" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/" target="_blank" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Ofankor Barrier, Accra</li>
+                        <li><i class="fas fa-phone-alt"></i> 0550008800</li>
+                        <li><i class="fas fa-envelope"></i> info@adubeakitchen.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Adubea's Kitchen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+
