@@ -10,88 +10,44 @@
 // MENU DATA - UPDATED MENU
 // ========================================
 const menuData = {
-    breakfast: [
-        {
-            id: 1,
-            name: "Full English Breakfast",
-            description: "Eggs, bacon, sausages, beans, toast & grilled tomatoes",
-            price: 55,
-            image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop"
-        },
-        {
-            id: 2,
-            name: "Continental Breakfast",
-            description: "Croissants, fruits, yogurt, cheese & fresh juice",
-            price: 45,
-            image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop"
-        },
-        {
-            id: 3,
-            name: "Omelette Deluxe",
-            description: "3 eggs with cheese, mushrooms, ham & toast",
-            price: 35,
-            image: "https://images.unsplash.com/photo-1510693206972-df098062cb71?w=400&h=300&fit=crop"
-        },
-        {
-            id: 4,
-            name: "Vegetable Omelette",
-            description: "Eggs with peppers, onions, tomatoes & cheese",
-            price: 30,
-            image: "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=400&h=300&fit=crop"
-        },
-        {
-            id: 5,
-            name: "Eggs Benedict",
-            description: "Poached eggs, ham, English muffin & hollandaise",
-            price: 40,
-            image: "https://images.unsplash.com/photo-1608039829572-9c8ee9d14ce6?w=400&h=300&fit=crop"
-        },
-        {
-            id: 6,
-            name: "Avocado Toast",
-            description: "Smashed avocado on artisan bread with poached egg",
-            price: 32,
-            image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop"
-        }
-    ],
     local: [
         {
-            id: 7,
+            id: 1,
             name: "Jollof Rice Special",
             description: "Premium spiced tomato rice with chicken & salad",
             price: 40,
             image: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=400&h=300&fit=crop"
         },
         {
-            id: 8,
+            id: 2,
             name: "Fried Rice Combo",
             description: "Nigerian style fried rice with chicken & peas",
             price: 38,
             image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
         },
         {
-            id: 9,
+            id: 3,
             name: "Banku & Tilapia",
             description: "Fermented corn dough with grilled tilapia & pepper",
             price: 50,
             image: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=400&h=300&fit=crop"
         },
         {
-            id: 10,
+            id: 4,
             name: "Kenkey & Fried Fish",
             description: "Fermented corn dough with spicy fried fish",
             price: 35,
             image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop"
         },
         {
-            id: 11,
+            id: 5,
             name: "Fufu & Light Soup",
             description: "Pounded cassava with goat meat & pepper",
             price: 55,
             image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=300&fit=crop"
         },
         {
-            id: 12,
+            id: 6,
             name: "Waakye Special",
             description: "Rice & beans with shrimps, spaghetti & fish",
             price: 35,
@@ -100,261 +56,115 @@ const menuData = {
     ],
     continental: [
         {
-            id: 13,
+            id: 7,
             name: "Spaghetti Bolognese",
             description: "Classic Italian pasta with rich meat sauce",
             price: 45,
             image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop"
         },
         {
-            id: 14,
+            id: 8,
             name: "Chicken Alfredo",
             description: "Fettuccine in creamy parmesan sauce with chicken",
             price: 55,
             image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=400&h=300&fit=crop"
         },
         {
-            id: 15,
+            id: 9,
             name: "Beef Stir Fry",
             description: "Tender beef with vegetables in soy sauce",
             price: 50,
             image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
         },
         {
-            id: 16,
+            id: 10,
             name: "Chicken Stir Fry",
             description: "Grilled chicken with mixed vegetables & rice",
             price: 48,
             image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=300&fit=crop"
         },
         {
-            id: 17,
+            id: 11,
             name: "Grilled Salmon",
             description: "Fresh Atlantic salmon with herbs & vegetables",
             price: 85,
             image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop"
         },
         {
-            id: 18,
+            id: 12,
             name: "Beef Steak",
             description: "Premium cut steak with pepper sauce & chips",
             price: 95,
             image: "https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=400&h=300&fit=crop"
         }
     ],
-    waffles: [
-        {
-            id: 19,
-            name: "Classic Belgian Waffle",
-            description: "Crispy waffle with butter & maple syrup",
-            price: 25,
-            image: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop"
-        },
-        {
-            id: 20,
-            name: "Chocolate Waffle",
-            description: "Waffle topped with chocolate sauce & whipped cream",
-            price: 30,
-            image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&h=300&fit=crop"
-        },
-        {
-            id: 21,
-            name: "Banana Nut Waffle",
-            description: "Waffle with caramelized bananas & pecans",
-            price: 32,
-            image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&h=300&fit=crop"
-        },
-        {
-            id: 22,
-            name: "Fluffy Pancakes",
-            description: "3 fluffy pancakes with butter & syrup",
-            price: 22,
-            image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop"
-        },
-        {
-            id: 23,
-            name: "Blueberry Pancakes",
-            description: "Pancakes topped with fresh blueberries & cream",
-            price: 28,
-            image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&h=300&fit=crop"
-        },
-        {
-            id: 24,
-            name: "Chocolate Pancakes",
-            description: "Chocolate pancakes with ice cream & chocolate sauce",
-            price: 30,
-            image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&h=300&fit=crop"
-        }
-    ],
-    pizza: [
-        {
-            id: 25,
-            name: "Margherita Pizza",
-            description: "Classic tomato, mozzarella & fresh basil",
-            price: 45,
-            image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400&h=300&fit=crop"
-        },
-        {
-            id: 26,
-            name: "Pepperoni Pizza",
-            description: "Loaded with pepperoni & extra cheese",
-            price: 55,
-            image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop"
-        },
-        {
-            id: 27,
-            name: "Chicken BBQ Pizza",
-            description: "Grilled chicken, BBQ sauce, onions & cheese",
-            price: 55,
-            image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop"
-        },
-        {
-            id: 28,
-            name: "Hawaiian Pizza",
-            description: "Ham, pineapple & mozzarella cheese",
-            price: 50,
-            image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
-        },
-        {
-            id: 29,
-            name: "Vegetable Pizza",
-            description: "Mixed peppers, onions, mushrooms, olives & tomato",
-            price: 45,
-            image: "https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=400&h=300&fit=crop"
-        },
-        {
-            id: 30,
-            name: "Seafood Pizza",
-            description: "Shrimp, crab sticks, mussels & cheese",
-            price: 65,
-            image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop"
-        }
-    ],
     drinks: [
         {
-            id: 31,
+            id: 13,
             name: "Vanilla Milkshake",
             description: "Creamy vanilla shake with whipped cream",
             price: 20,
             image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
         },
         {
-            id: 32,
+            id: 14,
             name: "Chocolate Milkshake",
             description: "Rich chocolate shake with chocolate chips",
             price: 22,
             image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop"
         },
         {
-            id: 33,
+            id: 15,
             name: "Strawberry Milkshake",
             description: "Fresh strawberry shake with real fruit",
             price: 22,
             image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop"
         },
         {
-            id: 34,
+            id: 16,
             name: "Oreo Milkshake",
             description: "Crushed Oreo cookies blended to perfection",
             price: 25,
             image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
         },
         {
-            id: 35,
+            id: 17,
             name: "Special Shake",
             description: "Ask for our special of the day",
             price: 30,
             image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop"
         },
         {
-            id: 36,
+            id: 18,
             name: "Fresh Juice",
             description: "Mango, pineapple, orange or mixed",
             price: 15,
-            image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop"
+            image: "images/drinks/image.webp"
         },
         {
-            id: 37,
+            id: 19,
             name: "Soft Drinks",
             description: "Coca Cola, Fanta, Sprite, Guinness",
             price: 8,
             image: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&h=300&fit=crop"
         },
         {
-            id: 38,
+            id: 20,
             name: "Bottled Water",
             description: "Pure water 500ml",
             price: 5,
             image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=300&fit=crop"
         }
     ],
-    pastries: [
-        {
-            id: 39,
-            name: "Croissant",
-            description: "Buttery French pastry",
-            price: 15,
-            image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=300&fit=crop"
-        },
-        {
-            id: 40,
-            name: "Chocolate Muffin",
-            description: "Rich chocolate muffin with chocolate chips",
-            price: 12,
-            image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&h=300&fit=crop"
-        },
-        {
-            id: 41,
-            name: "Blueberry Muffin",
-            description: "Moist muffin filled with fresh blueberries",
-            price: 12,
-            image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&h=300&fit=crop"
-        },
-        {
-            id: 42,
-            name: "Cheesecake",
-            description: "New York style creamy cheesecake",
-            price: 25,
-            image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop"
-        },
-        {
-            id: 43,
-            name: "Tiramisu",
-            description: "Italian coffee-flavored layered dessert",
-            price: 30,
-            image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop"
-        },
-        {
-            id: 44,
-            name: "Small Chops Box",
-            description: "Assorted finger foods - spring rolls, samosa, puff puff",
-            price: 35,
-            image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop"
-        },
-        {
-            id: 45,
-            name: "Meat Pie",
-            description: "Flaky pastry filled with seasoned beef",
-            price: 15,
-            image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop"
-        },
-        {
-            id: 46,
-            name: "Chicken Pie",
-            description: "Savory pie with tender chicken filling",
-            price: 18,
-            image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop"
-        }
-    ]
 };
 
 // Default category
-let currentCategory = 'breakfast';
+let currentCategory = 'local';
 
 // ========================================
 // CART STATE
 // ========================================
-let cart = JSON.parse(localStorage.getItem('cremeMunchCart')) || [];
+let cart = JSON.parse(localStorage.getItem('adubeaKitchenCart')) || [];
 
 // ========================================
 // DOM ELEMENTS
@@ -593,7 +403,7 @@ function updateQuantity(id, change) {
 }
 
 function saveCart() {
-    localStorage.setItem('cremeMunchCart', JSON.stringify(cart));
+    localStorage.setItem('adubeaKitchenCart', JSON.stringify(cart));
 }
 
 function calculateTotal() {
@@ -716,6 +526,7 @@ orderForm.addEventListener('submit', function(e) {
     
     const name = document.getElementById('customerName').value.trim();
     const location = document.getElementById('customerLocation').value.trim();
+    const payment = document.getElementById('paymentMode').value.trim();
     const notes = document.getElementById('specialInstructions').value.trim();
     
     if (!name || !location) {
@@ -729,7 +540,7 @@ orderForm.addEventListener('submit', function(e) {
     }
     
     // Build WhatsApp message - New format
-    let message = 'Hello Adubea Kitchen 👋\n';
+    let message = 'Hello Adubea\'s Kitchen 👋\n';
     message += 'I would like to place an order.\n\n';
     message += '=====================\n';
     message += 'Order Details:\n';
@@ -739,8 +550,12 @@ orderForm.addEventListener('submit', function(e) {
         message += item.name + ' x' + item.quantity + '\n';
     });
     
-    message += '\nTotal amount: GHS ' + calculateTotal() + '\n';
+    message += '\n========================\n';
+    message += 'Total amount: GHS ' + calculateTotal() + '\n';
+    message += '========================\n\n';
+
     message += 'Delivery Location: ' + location + '\n';
+    message += 'Payment Mode: ' + payment + '\n';
     
     if (notes) {
         message += 'Notes: ' + notes + '\n';
@@ -842,7 +657,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // INITIALIZE
 // ========================================
 function init() {
-    renderMenuItems('breakfast');
+    renderMenuItems('local');
     updateCartUI();
 }
 
