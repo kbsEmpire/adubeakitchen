@@ -1,165 +1,440 @@
 /* ========================================
-   Adubea's Kitchen - MAIN JAVASCRIPT
-   ======================================== 
-   Copyright 2026 Adubea's Kitchen
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file.
-   */
+   ADUBEA'S KITCHEN – MENU ENGINE v2
+   Supports:
+   ✔ Daily meals
+   ✔ Weekday specials auto-detection
+   ✔ Protein-based pricing
+   ✔ Fixed combo meals
+   ✔ Swallow meals selector
+   ✔ Extras tab pricing
+   ✔ WhatsApp-ready cart formatting
+======================================== */
 
-// ========================================
-// MENU DATA - UPDATED MENU
-// ========================================
-const menuData = {
-    local: [
-        {
-            id: 1,
-            name: "Jollof Rice Special",
-            description: "Premium spiced tomato rice with chicken & salad",
-            price: 40,
-            image: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=400&h=300&fit=crop"
-        },
-        {
-            id: 2,
-            name: "Fried Rice Combo",
-            description: "Nigerian style fried rice with chicken & peas",
-            price: 38,
-            image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
-        },
-        {
-            id: 3,
-            name: "Banku & Tilapia",
-            description: "Fermented corn dough with grilled tilapia & pepper",
-            price: 50,
-            image: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=400&h=300&fit=crop"
-        },
-        {
-            id: 4,
-            name: "Kenkey & Fried Fish",
-            description: "Fermented corn dough with spicy fried fish",
-            price: 35,
-            image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop"
-        },
-        {
-            id: 5,
-            name: "Fufu & Light Soup",
-            description: "Pounded cassava with goat meat & pepper",
-            price: 55,
-            image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=300&fit=crop"
-        },
-        {
-            id: 6,
-            name: "Waakye Special",
-            description: "Rice & beans with shrimps, spaghetti & fish",
-            price: 35,
-            image: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=400&h=300&fit=crop"
-        }
+const today = new Date().toLocaleDateString('en-US', {
+    weekday: 'long'
+}).toLowerCase();
+
+
+/* ========================================
+   DAILY MEALS (AVAILABLE EVERY DAY)
+======================================== */
+function getMealImage(mealName) {
+
+    // Remove protein text inside brackets
+    const cleanName = mealName
+        .replace(/\(.*?\)/g, "")
+        .trim();
+
+    return "images/meals/" +
+    cleanName
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9\-]/g, "")
+    + ".webp";
+
+}
+
+const dailyMeals = [
+
+{
+name: "Jollof Rice",
+type: "protein",
+options: [
+{ name: "Chicken", price: 60 },
+{ name: "Fried Fish", price: 60 },
+{ name: "Turkey", price: 70 },
+{ name: "Goat Meat", price: 70 },
+{ name: "Tilapia", price: 90 }
+]
+},
+
+{
+name: "Fried Rice",
+type: "protein",
+options: [
+{ name: "Chicken", price: 60 },
+{ name: "Fried Fish", price: 60 },
+{ name: "Turkey", price: 70 },
+{ name: "Goat Meat", price: 70 },
+{ name: "Tilapia", price: 90 }
+]
+},
+
+{
+name: "Plain Rice + Palava Sauce",
+type: "fixed",
+price: 60
+},
+
+{
+name: "Adubified Spaghetti",
+type: "fixed",
+price: 60
+},
+
+{
+name: "Plantain + Abom",
+type: "fixed",
+price: 70
+},
+
+{
+name: "Yam + Abom",
+type: "fixed",
+price: 70
+},
+
+{
+name: "Yam Chips",
+type: "protein",
+options: [
+{ name: "Chicken", price: 60 },
+{ name: "Fried Fish", price: 60 },
+{ name: "Turkey", price: 70 },
+{ name: "Tilapia", price: 80 }
+]
+}
+
+];
+
+
+/* ========================================
+   WEEKDAY SPECIALS
+======================================== */
+
+const weekdaySpecials = {
+
+monday: [
+
+{
+name: "Kenkey",
+type: "protein",
+options: [
+{ name: "Half Tilapia", price: 45 },
+{ name: "Full Tilapia", price: 80 },
+{ name: "Chicken Wings", price: 40 },
+{ name: "Turkey", price: 50 },
+{ name: "Fried Fish", price: 40 }
+]
+}
+
+],
+
+tuesday: [
+
+{
+name: "Eba + Okro Soup",
+type: "swallow",
+options: [
+{ name: "Chicken", price: 60 },
+{ name: "Goat Meat", price: 70 },
+{ name: "Fish", price: 60 },
+{ name: "Crab", price: 70 },
+{ name: "Snail", price: 70 },
+{ name: "Salmon", price: 70 },
+{ name: "Wele", price: 60 }
+]
+},
+
+{
+name: "Mpoto Mpoto",
+type: "fixed",
+price: 60
+}
+
+],
+
+wednesday: [
+
+{
+name: "Gari Foto",
+type: "fixed",
+price: 60
+}
+
+],
+
+thursday: [
+
+{
+name: "Angwamo Special",
+type: "fixed",
+price: 60
+}
+
+],
+
+friday: [
+
+{
+name: "Waakye Special",
+type: "fixed",
+price: 60
+},
+
+{
+name: "Red Red Special",
+type: "fixed",
+price: 60
+}
+
+],
+
+saturday: [
+
+    {
+    name: "Omo tuo",
+    type: "fixed",
+    price: 60
+    }
+    
     ],
-    continental: [
+
+sunday: [
+
         {
-            id: 7,
-            name: "Spaghetti Bolognese",
-            description: "Classic Italian pasta with rich meat sauce",
-            price: 45,
-            image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop"
-        },
-        {
-            id: 8,
-            name: "Chicken Alfredo",
-            description: "Fettuccine in creamy parmesan sauce with chicken",
-            price: 55,
-            image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=400&h=300&fit=crop"
-        },
-        {
-            id: 9,
-            name: "Beef Stir Fry",
-            description: "Tender beef with vegetables in soy sauce",
-            price: 50,
-            image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
-        },
-        {
-            id: 10,
-            name: "Chicken Stir Fry",
-            description: "Grilled chicken with mixed vegetables & rice",
-            price: 48,
-            image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=300&fit=crop"
-        },
-        {
-            id: 11,
-            name: "Grilled Salmon",
-            description: "Fresh Atlantic salmon with herbs & vegetables",
-            price: 85,
-            image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop"
-        },
-        {
-            id: 12,
-            name: "Beef Steak",
-            description: "Premium cut steak with pepper sauce & chips",
-            price: 95,
-            image: "https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=400&h=300&fit=crop"
+        name: "Mpoto Mpoto",
+        type: "fixed",
+        price: 60
         }
-    ],
-    drinks: [
-        {
-            id: 13,
-            name: "Vanilla Milkshake",
-            description: "Creamy vanilla shake with whipped cream",
-            price: 20,
-            image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
-        },
-        {
-            id: 14,
-            name: "Chocolate Milkshake",
-            description: "Rich chocolate shake with chocolate chips",
-            price: 22,
-            image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop"
-        },
-        {
-            id: 15,
-            name: "Strawberry Milkshake",
-            description: "Fresh strawberry shake with real fruit",
-            price: 22,
-            image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop"
-        },
-        {
-            id: 16,
-            name: "Oreo Milkshake",
-            description: "Crushed Oreo cookies blended to perfection",
-            price: 25,
-            image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
-        },
-        {
-            id: 17,
-            name: "Special Shake",
-            description: "Ask for our special of the day",
-            price: 30,
-            image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop"
-        },
-        {
-            id: 18,
-            name: "Fresh Juice",
-            description: "Mango, pineapple, orange or mixed",
-            price: 15,
-            image: "images/drinks/image.webp"
-        },
-        {
-            id: 19,
-            name: "Soft Drinks",
-            description: "Coca Cola, Fanta, Sprite, Guinness",
-            price: 8,
-            image: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&h=300&fit=crop"
-        },
-        {
-            id: 20,
-            name: "Bottled Water",
-            description: "Pure water 500ml",
-            price: 5,
-            image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=300&fit=crop"
-        }
-    ],
+        
+        ]
+
 };
 
+
+/* ========================================
+   EXTRAS TAB
+======================================== */
+
+const extras = [
+
+{ name: "Egg", price: 10 },
+{ name: "Pear", price: 5 },
+{ name: "Sausage", price: 10 },
+{ name: "Chicken", price: 20 },
+{ name: "Goat Meat", price: 30 },
+{ name: "Snail", price: 30 },
+{ name: "Crab", price: 30 },
+{ name: "Fried Fish", price: 20 },
+{ name: "Salmon", price: 30 },
+{ name: "Koobi", price: 15 },
+{ name: "Wele", price: 15 }
+
+];
+
+
+/* ========================================
+   DRINKS (EDIT LATER IF NEEDED)
+======================================== */
+
+const drinks = [
+
+{ name: "Coca Cola", price: 10 },
+{ name: "Fanta", price: 10 },
+{ name: "Sprite", price: 10 },
+{ name: "Malta", price: 12 },
+{ name: "Water", price: 5 }
+
+];
+
+
+/* ========================================
+   AUTO TODAY'S MENU ENGINE
+======================================== */
+
+function getTodaysMeals() {
+
+let todaysMenu = [...dailyMeals];
+
+if (weekdaySpecials[today]) {
+
+todaysMenu = todaysMenu.concat(
+weekdaySpecials[today]
+);
+
+}
+
+return todaysMenu;
+
+}
+
+
+/* ========================================
+   MASTER MENU DATA OBJECT
+======================================== */
+
+const menuData = {
+
+todayMeals: getTodaysMeals(),
+
+weekdaySpecials,
+
+extras,
+
+drinks
+
+};
+
+
+/* ========================================
+   MENU RENDERER ENGINE
+======================================== */
+
+function renderMenu(category) {
+
+const container = document.getElementById("menu-items");
+
+container.innerHTML = "";
+
+let items = [];
+
+if (category === "today") items = menuData.todayMeals;
+
+if (category === "extras") items = menuData.extras;
+
+if (category === "drinks") items = menuData.drinks;
+
+
+items.forEach(item => {
+
+const card = document.createElement("div");
+
+card.classList.add("menu-card");
+
+
+/* FIXED PRICE MEALS */
+
+if (item.type === "fixed" || category === "extras" || category === "drinks") {
+
+card.innerHTML = `
+
+<h3>${item.name}</h3>
+
+<p>GHS ${item.price}</p>
+
+<button onclick="addToCart('${item.name}', ${item.price})">
+
+Add to Cart
+
+</button>
+
+`;
+
+}
+
+
+/* PROTEIN SELECTOR MEALS */
+
+if (item.type === "protein") {
+
+let optionsHTML = `<select onchange="updateProteinSelection(this, '${item.name}')">`;
+
+optionsHTML += `<option value="">Select Protein</option>`;
+
+item.options.forEach(opt => {
+
+optionsHTML += `
+
+<option value="${opt.name}|${opt.price}">
+
+${opt.name} - GHS ${opt.price}
+
+</option>
+
+`;
+
+});
+
+optionsHTML += "</select>";
+
+card.innerHTML = `
+
+<h3>${item.name}</h3>
+
+${optionsHTML}
+
+<button onclick="addProteinMeal('${item.name}', this.previousElementSibling.value)">
+
+Add to Cart
+
+</button>
+
+`;
+
+}
+
+
+/* SWALLOW MEALS */
+
+if (item.type === "swallow") {
+
+let optionsHTML = `<select onchange="updateProteinSelection(this, '${item.name}')">`;
+
+optionsHTML += `<option value="">Select Protein</option>`;
+
+item.options.forEach(opt => {
+
+optionsHTML += `
+
+<option value="${opt.name}|${opt.price}">
+
+${opt.name} - GHS ${opt.price}
+
+</option>
+
+`;
+
+});
+
+optionsHTML += "</select>";
+
+card.innerHTML = `
+
+<h3>${item.name}</h3>
+
+${optionsHTML}
+
+<button onclick="addProteinMeal('${item.name}', this.previousElementSibling.value)">
+
+Add to Cart
+
+</button>
+
+`;
+
+}
+
+
+container.appendChild(card);
+
+});
+
+}
+
+
+/* ========================================
+   PROTEIN CART HANDLER
+======================================== */
+
+function addProteinMeal(mealName, selectedValue) {
+
+if (!selectedValue) {
+
+alert("Please select a protein");
+
+return;
+
+}
+
+const [protein, price] = selectedValue.split("|");
+
+addToCart(`${mealName} (${protein})`, Number(price));
+
+}
+
 // Default category
-let currentCategory = 'local';
+let currentCategory = 'today';
 
 // ========================================
 // CART STATE
@@ -185,6 +460,19 @@ const cartBadge = document.getElementById('cartBadge');
 const orderForm = document.getElementById('orderForm');
 const revealElements = document.querySelectorAll('.reveal');
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentSelect = document.getElementById('paymentMode');
+    const momoDetails = document.getElementById('momoDetails');
+
+    paymentSelect.addEventListener('change', function() {
+        if (this.value === 'Mobile Money') {
+            momoDetails.style.display = 'block';
+        } else{
+            momoDetails.style.display = 'none';
+        }
+    });
+});
 // ========================================
 // NAVBAR SCROLL EFFECT
 // ========================================
@@ -249,82 +537,117 @@ window.addEventListener('scroll', updateActiveNavLink);
 // RENDER MENU ITEMS
 // ========================================
 function renderMenuItems(category) {
-    const items = menuData[category];
-    
-    menuGrid.innerHTML = items.map(item => `
-        <div class="menu-item" data-id="${item.id}">
-            <div class="menu-item-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
-            </div>
-            <div class="menu-item-content">
-                <div class="menu-item-header">
-                    <h3 class="menu-item-name">${item.name}</h3>
-                    <span class="menu-item-price">GHS ${item.price}</span>
-                </div>
-                <p class="menu-item-description">${item.description}</p>
-                <div class="menu-item-actions">
-                    <div class="quantity-selector">
-                        <button class="quantity-btn minus" data-id="${item.id}">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="quantity-value" id="qty-${item.id}">1</span>
-                        <button class="quantity-btn plus" data-id="${item.id}">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="add-to-cart-btn" data-id="${item.id}">
-                        Add to Order
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
 
-    // Quantity button listeners
-    document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.dataset.id);
-            const qtyElement = document.getElementById('qty-' + id);
-            let qty = parseInt(qtyElement.textContent);
-            if (qty > 1) {
-                qty--;
-                qtyElement.textContent = qty;
-            }
-        });
+    let items = [];
+
+    if (category === "today") items = menuData.todayMeals;
+    if (category === "extras") items = menuData.extras;
+    if (category === "drinks") items = menuData.drinks;
+
+    menuGrid.innerHTML = "";
+
+    items.forEach((item, index) => {
+
+        const card = document.createElement("div");
+        card.className = "menu-item reveal";
+
+        let imagePath = getMealImage(item.name);
+
+let content = `
+<img class="menu-item-image"
+src="${imagePath}"
+onerror="this.src='images/meals/default.webp'">
+
+<div class="menu-item-content">
+<h3 class="menu-item-name">${item.name}</h3>
+`;
+
+        // FIXED MEALS
+        if (item.type === "fixed" || category !== "today") {
+
+            content += `
+            <span class="menu-item-price">GHS ${item.price}</span>
+
+            <button class="add-to-cart-btn">
+            Add to Order
+            </button>
+            `;
+
+            card.innerHTML = content;
+
+            card.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+
+                addToCart({
+                    name: item.name,
+                    price: item.price
+                });
+
+            });
+
+        }
+
+        // PROTEIN SELECTOR
+        if (item.type === "protein" || item.type === "swallow") {
+
+            let selector = `<select class="protein-select">
+            <option value="">Select Protein</option>`;
+
+            item.options.forEach(opt => {
+
+                selector += `
+                <option value="${opt.name}|${opt.price}">
+                ${opt.name} - GHS ${opt.price}
+                </option>
+                `;
+
+            });
+
+            selector += `</select>`;
+
+            content += selector;
+
+            content += `
+            <button class="add-to-cart-btn">
+            Add to Order
+            </button>
+            `;
+
+            card.innerHTML = content;
+
+            const select = card.querySelector(".protein-select");
+
+            card.querySelector(".add-to-cart-btn")
+            .addEventListener("click", () => {
+
+                if (!select.value) {
+
+                    alert("Please select a protein");
+
+                    return;
+
+                }
+
+                const [protein, price] = select.value.split("|");
+
+                addToCart({
+
+                    name: `${item.name} (${protein})`,
+                    price: Number(price)
+
+                });
+
+            });
+
+        }
+
+        menuGrid.appendChild(card);
+
+        setTimeout(() => {
+            card.classList.add("active");
+        }, index * 100);
+
     });
 
-    document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.dataset.id);
-            const qtyElement = document.getElementById('qty-' + id);
-            let qty = parseInt(qtyElement.textContent);
-            qty++;
-            qtyElement.textContent = qty;
-        });
-    });
-
-    // Add to cart button listeners
-    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.dataset.id);
-            const qty = parseInt(document.getElementById('qty-' + id).textContent);
-            addToCart(id, qty);
-        });
-    });
-
-    // Reveal animation
-    setTimeout(() => {
-        const items = menuGrid.querySelectorAll('.menu-item');
-        items.forEach((item, index) => {
-            item.classList.add('reveal');
-            setTimeout(() => {
-                item.classList.add('active');
-            }, index * 100);
-        });
-    }, 50);
 }
 
 // ========================================
@@ -349,57 +672,76 @@ tabButtons.forEach(btn => {
     });
 });
 
-// ========================================
-// CART MANAGEMENT
-// ========================================
-function findItemById(id) {
-    for (const category in menuData) {
-        const item = menuData[category].find(i => i.id === id);
-        if (item) return item;
-    }
-    return null;
-}
 
-function addToCart(id, quantity = 1) {
-    const item = findItemById(id);
-    if (!item) return;
 
-    const existingItem = cart.find(i => i.id === id);
-    
+function addToCart(itemData) {
+
+    const existingItem = cart.find(
+        i => i.name === itemData.name
+    );
+
+    const mealImage = getMealImage(itemData.name);
+
     if (existingItem) {
-        existingItem.quantity += quantity;
+
+        existingItem.quantity++;
+
     } else {
+
         cart.push({
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            image: item.image,
-            quantity: quantity
+
+            id: Date.now() + Math.random(),
+
+            name: itemData.name,
+
+            price: itemData.price,
+
+            image: mealImage, 
+
+            quantity: 1
+
         });
+
     }
 
     saveCart();
+
     updateCartUI();
-    showNotification(item.name + ' added to cart!');
+
+    showNotification(itemData.name + " added to cart");
+
 }
 
 function removeFromCart(id) {
+
     cart = cart.filter(item => item.id !== id);
+
     saveCart();
+
     updateCartUI();
+
 }
 
 function updateQuantity(id, change) {
+
     const item = cart.find(i => i.id === id);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(id);
-        } else {
-            saveCart();
-            updateCartUI();
-        }
+
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+
+        removeFromCart(id);
+
+    } else {
+
+        saveCart();
+
+        updateCartUI();
+
     }
+
 }
 
 function saveCart() {
@@ -411,29 +753,53 @@ function calculateTotal() {
 }
 
 function updateCartUI() {
+
     const total = calculateTotal();
-    const itemCount = cart.reduce((count, item) => count + item.quantity, 0);
-    
+
+    const itemCount = cart.reduce(
+        (count, item) => count + item.quantity, 0
+    );
+
     // Update badge
     cartBadge.textContent = itemCount;
-    cartBadge.style.display = itemCount > 0 ? 'flex' : 'none';
+
+    cartBadge.style.display =
+        itemCount > 0 ? 'flex' : 'none';
+
 
     // Update mobile cart bar if exists
-    const mobileCartBar = document.getElementById('mobileCartBar');
+    const mobileCartBar =
+        document.getElementById('mobileCartBar');
+
     if (mobileCartBar) {
-        const mobileTotal = document.getElementById('mobileCartTotal');
-        const mobileCartBadge = document.getElementById('mobileCartBadge');
+
+        const mobileTotal =
+            document.getElementById('mobileCartTotal');
+
+        const mobileCartBadge =
+            document.getElementById('mobileCartBadge');
+
         if (itemCount > 0) {
+
             mobileCartBar.style.display = 'flex';
-            mobileTotal.textContent = 'GHS ' + total;
-            mobileCartBadge.textContent = itemCount;
+
+            mobileTotal.textContent =
+                'GHS ' + total;
+
+            mobileCartBadge.textContent =
+                itemCount;
+
         } else {
+
             mobileCartBar.style.display = 'none';
+
         }
     }
 
+
     // Update panel
     if (cart.length === 0) {
+
         orderItems.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-basket"></i>
@@ -441,36 +807,69 @@ function updateCartUI() {
                 <span>Add items from our menu</span>
             </div>
         `;
+
         orderFooter.style.display = 'none';
+
     } else {
+
         orderItems.innerHTML = cart.map(item => `
+
             <div class="order-item">
-                <div class="order-item-image">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
+
+                <img class="order-item-image"
+                src="${item.image?.includes('images/')
+        ? item.image
+        : 'images/meals/' + (item.image || getMealImage(item.name))}"
+                onerror="this.src='images/meals/default.webp'">
+
                 <div class="order-item-details">
-                    <h4 class="order-item-name">${item.name}</h4>
+
+                    <h4 class="order-item-name">
+                        ${item.name}
+                    </h4>
+
                     <div class="order-item-controls">
+
                         <div class="quantity-selector">
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+
+                            <button class="quantity-btn"
+                            onclick="updateQuantity(${item.id}, -1)">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <span class="quantity-value">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+
+                            <span class="quantity-value">
+                                ${item.quantity}
+                            </span>
+
+                            <button class="quantity-btn"
+                            onclick="updateQuantity(${item.id}, 1)">
                                 <i class="fas fa-plus"></i>
                             </button>
+
                         </div>
-                        <span class="order-item-price">GHS ${item.price * item.quantity}</span>
-                        <button class="remove-item" onclick="removeFromCart(${item.id})">
+
+                        <span class="order-item-price">
+                            GHS ${item.price * item.quantity}
+                        </span>
+
+                        <button class="remove-item"
+                        onclick="removeFromCart(${item.id})">
                             <i class="fas fa-trash"></i>
                         </button>
+
                     </div>
+
                 </div>
+
             </div>
+
         `).join('');
-        
+
         orderFooter.style.display = 'block';
-        totalAmount.textContent = calculateTotal();
+
+        totalAmount.textContent =
+            calculateTotal();
+
     }
 }
 
@@ -528,7 +927,7 @@ orderForm.addEventListener('submit', function(e) {
     const location = document.getElementById('customerLocation').value.trim();
     const payment = document.getElementById('paymentMode').value.trim();
     const notes = document.getElementById('specialInstructions').value.trim();
-    
+
     if (!name || !location) {
         alert('Please enter your name and delivery location.');
         return;
@@ -554,6 +953,7 @@ orderForm.addEventListener('submit', function(e) {
     message += 'Total amount: GHS ' + calculateTotal() + '\n';
     message += '========================\n\n';
 
+    message += 'Customer Name: ' + name + '\n';
     message += 'Delivery Location: ' + location + '\n';
     message += 'Payment Mode: ' + payment + '\n';
     
@@ -657,9 +1057,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // INITIALIZE
 // ========================================
 function init() {
-    renderMenuItems('local');
+    renderMenuItems('today');
     updateCartUI();
 }
 
 init();
-
