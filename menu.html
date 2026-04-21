@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Adubea's Kitchen | Menu</title>
+  <!-- Font Awesome 6 (free, modern icons) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #F7F3E9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #222;
+      line-height: 1.4;
+    }
+
+    /* ---------- STICKY HEADER ---------- */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      padding: 16px 20px;
+      text-align: center;
+      z-index: 100;
+      backdrop-filter: blur(0px);
+      border-bottom: 1px solid #eee;
+    }
+
+    h1{
+      color: var(--color-gold);
+    }
+
+    .nav-logo{
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 2px;
+    }
+
+    .sticky-header h1 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #1e1e2a;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .sticky-header h1 i {
+      font-size: 1.6rem;
+      color: #c95a2c;
+    }
+
+    /* ---------- MAIN CONTAINER (CENTERED, MAX-WIDTH) ---------- */
+    .menu-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #F7F3E9;
+      padding: 0 0 32px 0;
+    }
+
+    /* ---------- MENU SECTIONS (VERTICAL STACK) ---------- */
+    .menu-section {
+      margin-bottom: 20px;   /* 20px spacing between sections */
+      background-color: #F7F3E9;
+    }
+
+    .menu-section:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Section titles: modern with Font Awesome icons */
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      padding: 0 16px;
+      color: #2c2c2c;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      font-size: 1.6rem;
+      color: #c95a2c;
+      width: 1.8rem;
+      text-align: center;
+    }
+
+    /* full-width images, responsive, no cropping */
+    .menu-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.1s ease, opacity 0.2s;
+      background-color: #f0f0f0;
+    }
+
+    .menu-img:active {
+      transform: scale(0.99);
+      opacity: 0.95;
+    }
+
+    /* ---------- LIGHTBOX (FULLSCREEN, PINCH-ZOOM READY) ---------- */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .lightbox.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 95vw;
+      max-height: 95vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      background-color: #1a1a1a;
+      cursor: zoom-out;
+    }
+
+    /* modern close button with Font Awesome icon */
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(0, 0, 0, 0.6);
+      width: 44px;
+      height: 44px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      backdrop-filter: blur(4px);
+      color: white;
+      font-size: 1.8rem;
+      border: none;
+      z-index: 1010;
+    }
+
+    .close-lightbox:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .close-lightbox i {
+      font-size: 1.6rem;
+    }
+
+    @media (max-width: 560px) {
+      .close-lightbox {
+        top: 12px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+      }
+      .section-title {
+        font-size: 1.55rem;
+        gap: 8px;
+      }
+      .section-title i {
+        font-size: 1.4rem;
+      }
+      .sticky-header h1 {
+        font-size: 1.5rem;
+      }
+      .sticky-header h1 i {
+        font-size: 1.4rem;
+      }
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    @media (hover: hover) {
+      .menu-img:hover {
+        transform: scale(1.01);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- sticky header with Font Awesome icon instead of emoji -->
+  <header class="sticky-header">
+    <h1>
+      Adubea's Kitchen Menu
+    </h1>
+  </header>
+
+  <main class="menu-container">
+    <!-- 
+      ============================================================
+      SECTION 1: MAIN DISHES (icon: bowl-food)
+      ============================================================
+      👉 TO REPLACE IMAGE: change 'src' to your actual main dish flyer
+    -->
+    <section class="menu-section">
+      <h2 class="section-title">
+        <i class="fas fa-utensils"></i> 
+        Main Dishes
+      </h2>
+      <img 
+        src="images/gallery/maindish1.webp" 
+        alt="Adubea's Kitchen - Main Dishes flyer" 
+        class="menu-img" 
+        loading="lazy"
+        onerror="fallbackImage(this, 'Main Dishes')"
+        data-section="main"
+      >
+    </section>
+
+    <!-- 
+      ============================================================
+      SECTION 2: WEEKDAY SPECIALS (icon: calendar-week)
+      ============================================================
+    
+    -->
+    <section class="menu-section">
+      <h2 class="section-title">
+        <i class="fas fa-calendar-week"></i> 
+        Weekday Specials
+      </h2>
+      <img 
+        src="images/gallery/specials1.webp" 
+        alt="Adubea's Kitchen - Weekday Specials flyer" 
+        class="menu-img" 
+        loading="lazy"
+        onerror="fallbackImage(this, 'Weekday Specials')"
+        data-section="specials"
+      >
+      
+    </section>
+
+        <!-- 
+      ============================================================
+      SECTION 3: EXTRAS (icon: fries)
+      ============================================================
+    -->
+    <section class="menu-section">
+      <h2 class="section-title">
+        <i class="fas fa-plus-circle"></i> 
+        Extras
+      </h2>
+      <img 
+        src="images/gallery/extras1.webp" 
+        alt="Adubea's Kitchen - Extras & sides flyer" 
+        class="menu-img" 
+        loading="lazy"
+        onerror="fallbackImage(this, 'Extras')"
+        data-section="extras"
+      >
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL (fullscreen with pinch-zoom) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Fullscreen menu flyer viewer">
+    <div class="lightbox-content">
+      <img id="lightboxImage" class="lightbox-img" alt="Enlarged menu flyer – pinch to zoom">
+    </div>
+    <button class="close-lightbox" aria-label="Close fullscreen view">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <script>
+    /* ============================================================
+       FALLBACK HELPER: clean SVG without emojis (modern & minimal)
+       Only appears if maindish.jpg, extras.jpg, specials.jpg are missing.
+       Real images will replace these placeholders.
+       ============================================================ */
+    function fallbackImage(imgElement, dishType) {
+      if (imgElement.getAttribute('data-fallback-set') === 'true') return;
+      imgElement.setAttribute('data-fallback-set', 'true');
+
+      // clean SVG – no emojis, uses modern text and simple graphics
+      const svgString = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+          <rect width="800" height="600" fill="#FEF5E7" rx="16" ry="16"/>
+          <rect x="0" y="0" width="800" height="600" fill="url(#grad)" rx="16" ry="16"/>
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFEEDD" />
+              <stop offset="100%" stop-color="#FFF1E6" />
+            </linearGradient>
+          </defs>
+          <text x="400" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="600" fill="#B95C2C" text-anchor="middle">${dishType}</text>
+          <text x="400" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#7E5A44" text-anchor="middle">Replace with actual flyer</text>
+          <text x="400" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#A67B5B" text-anchor="middle">Update src → your-image.jpg</text>
+          <circle cx="400" cy="480" r="28" fill="#E7CAB3" opacity="0.6"/>
+          <path d="M390 480 L410 480 M400 470 L400 490" stroke="#9B6A42" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      `;
+      
+      const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svgString);
+      imgElement.src = encodedSvg;
+      imgElement.onerror = null; // prevent loop
+    }
+
+    /* ============================================================
+       LIGHTBOX SYSTEM: tap any image -> fullscreen modal
+       Supports pinch-to-zoom for checking prices clearly.
+       No download button, clean exit.
+       ============================================================ */
+    (function initLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImage');
+      const closeBtn = document.querySelector('.close-lightbox');
+      
+      function openLightbox(imageSrc) {
+        if (!imageSrc) return;
+        lightboxImg.src = imageSrc;
+        lightbox.classList.add('active');
+        document.body.classList.add('lightbox-open');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.classList.remove('lightbox-open');
+      }
+
+      // Attach click listeners to all menu images
+      const allMenuImages = document.querySelectorAll('.menu-img');
+      allMenuImages.forEach(img => {
+        img.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const imgSrc = img.getAttribute('src');
+          if (imgSrc) openLightbox(imgSrc);
+        });
+      });
+
+      // Close on background click
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      // Close button click
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (event) => {
+          event.stopPropagation();
+          closeLightbox();
+        });
+      }
+
+      // ESC key support
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    })();
+
+    console.log('Adubea\'s Kitchen — modern icons active. Replace image paths: maindish.jpg, extras.jpg, specials.jpg');
+  </script>
+</body>
+</html>
